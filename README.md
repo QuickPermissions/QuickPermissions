@@ -4,6 +4,16 @@ The most easiest way to handle Android Runtime Permissions.
 
 
 
+* [Inspiration](#inspiration)
+* [Add it to your app](#add-it-to-your-app)
+* [How to do it?](#how-to-do-it)
+  * [Let the library do all the hard stuff](#let-the-library-do-all-the-hard-stuff)
+  * [You manage the rationale message showing](#you-manage-the-rationale-message-showing)
+  * [You manage when permissions are permanently denied](#you-manage-when-permissions-are-permanently-denied)
+* [Summary](#summary)
+
+
+
 ## Inspiration
 
 Android runtime permissions was introduced in the Marshmallow (v 6.0) version of Android. It asks for permissions to user when they are running the app instead of asking for all the permissions while installing the app. It gives more control to users as they can give the permissions they want and deny to those who they do not fill comfortable with. 
@@ -33,7 +43,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	    // ...
         // BELOW LINE THIS SHOULD BE ADDED
-        classpath 'com.github.QuickPermissions:QuickPermissions:0.2.0' 
+        classpath 'com.github.QuickPermissions:QuickPermissions:0.3.0' 
     }
 }
 
@@ -166,6 +176,10 @@ public void onShowRational(final QuickPermissionsRequest arg) {
 
 
 
+**Note:** These methods with annotations should be public. 
+
+
+
 ### You manage when permissions are permanently denied
 
 
@@ -233,14 +247,16 @@ public void onDenied(QuickPermissionsRequest arg) {
 
 
 
+## Summary
+
 Summary of the annotations you can use
 
 | Annotation                        | Method Arguments (if any) | Description                                                  |
 | --------------------------------- | ------------------------- | ------------------------------------------------------------ |
 | `@WithPermissions`                |                           | Annotate a method with this annotations and pass the `permissions` array. It will handle all the things by itself. Return type should be `void`<br />Arguments you can pass:<br />* `permissions` - list of permissions as array<br />* `rationaleMessage` - A custom message to be shown, when rationale dialog is shown<br />* `permanentlyDeniedMessage` - A custom message to be shown, when permanently denied dialog is shown<br />* `handleRationale` - Default true. Indicates weather rationale case should be handled or not<br />* `handlePermanentlyDenied` - Default true. Indicates weather permanently denied permission(s) case should be handled or not |
-| `@OnShowRationale`                | `QuickPermissionsRequest` | Annotate a method with this annotation when you want to handle rationale case. The method should have one argument of type `QuickPermissionsRequest`. If `handleRationale` was set to false, this method will not be called. |
-| `@OnPermissionsPermanentlyDenied` | `QuickPermissionsRequest` | Annotate a method with this annotation when you want to handle permanently permissions denied case. The method should have one argument of type `QuickPermissionsRequest`. If `handlePermanentlyDenied`was set to false, this method will not be called. |
-| `@OnPermissionsDenied`            | `QuickPermissionsRequest` | Method with this annotation will be called when, no permissions are not granted when the flow is complete. The method should have one argument of type `QuickPermissionsRequest`. |
+| `@OnShowRationale`                | `QuickPermissionsRequest` | Annotate a method with this annotation when you want to handle rationale case. The (public) method should have one argument of type `QuickPermissionsRequest`. If `handleRationale` was set to false, this method will not be called. |
+| `@OnPermissionsPermanentlyDenied` | `QuickPermissionsRequest` | Annotate a method with this annotation when you want to handle permanently permissions denied case. The (public) method should have one argument of type `QuickPermissionsRequest`. If `handlePermanentlyDenied`was set to false, this method will not be called. |
+| `@OnPermissionsDenied`            | `QuickPermissionsRequest` | (Public) Method with this annotation will be called when, no permissions are not granted when the flow is complete. The method should have one argument of type `QuickPermissionsRequest`. |
 
 
 
