@@ -78,6 +78,10 @@ There are several ways you can do this.
 
 
 
+Add this to your `Activity` extending `AppCompatActivity` or `Fragment` from the **support library.** 
+
+
+
 ### Let the library do all the hard stuff
 
 Add a single annotation, and you are all done. Library will manage everything, will ask for permissions, will show rationale dialog if denied and also ask to user to allow permissions from settings if user has permanently denied some permission(s) required by the method.
@@ -124,7 +128,7 @@ public void methodWithPermissions() {
 
 ### You manage the rationale message showing
 
-If you don't want the library to manage the rationale dialog showing, and you want to manage it on your own, you can do that by adding a method in your activity/fragment by adding a method with single argument of type <<>> and annotate it with annotation <<>>. So, whenever there is need of showing a rationale dialog, you will receive a callback on this method. You can call `proceed()` on it, to continue the asking permissions flow or `cancel()` to cancel the flow.
+If you don't want the library to manage the rationale dialog showing, and you want to manage it on your own, you can do that by adding a method in your activity/fragment by adding a method with single argument of type `QuickPermissionsRequest` and annotate it with annotation `OnShowRationale` . So, whenever there is need of showing a rationale dialog, you will receive a callback on this method. You can call `proceed()` on it, to continue the asking permissions flow or `cancel()` to cancel the flow.
 
 
 
@@ -166,7 +170,7 @@ public void onShowRational(final QuickPermissionsRequest arg) {
 
 
 
-If you don't want the library to manage the case where some permission(s) are permanently denied by asking it to open app settings and allow it from there, you can do that by adding a method in your activity/fragment by adding a method with single argument of type <<>> and annotate it with annotation <<>>. So, whenever there is a need of showing a message or asking user to open app settings to grant permanently denied permissions, you can receive a callback on this method. You can call `openAppSettings()` on it to continue flow or `cancel()` to cancel the flow.
+If you don't want the library to manage the case where some permission(s) are permanently denied by asking it to open app settings and allow it from there, you can do that by adding a method in your activity/fragment by adding a method with single argument of type `QuickPermissionsRequest` and annotate it with annotation `OnPermissionsPermanentlyDenied`. So, whenever there is a need of showing a message or asking user to open app settings to grant permanently denied permissions, you can receive a callback on this method. You can call `openAppSettings()` on it to continue flow or `cancel()` to cancel the flow.
 
 
 
