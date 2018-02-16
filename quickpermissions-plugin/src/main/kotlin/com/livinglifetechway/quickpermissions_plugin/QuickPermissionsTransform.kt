@@ -89,7 +89,7 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
     }
 
     override fun getScopes(): MutableSet<in QualifiedContent.Scope>? {
-        return Sets.immutableEnumSet(QualifiedContent.Scope.PROJECT,QualifiedContent.Scope.EXTERNAL_LIBRARIES)
+        return Sets.immutableEnumSet(QualifiedContent.Scope.PROJECT)
     }
 
     override fun getReferencedScopes(): MutableSet<in QualifiedContent.Scope>? {
