@@ -1,4 +1,4 @@
-# QuickPermissions
+# QuickPermissions [![Release](https://jitpack.io/v/QuickPermissions/QuickPermissions.svg)](https://jitpack.io/#QuickPermissions/QuickPermissions)
 
 The most easiest way to handle Android Runtime Permissions.
 
