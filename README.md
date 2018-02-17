@@ -74,7 +74,7 @@ Now, read below for using directions.
 
 
 
-> Supports both `Java` and `Kotlin`
+> **Supports both `Java` and `Kotlin`**
 
 
 
@@ -230,7 +230,7 @@ You can also combine the above methods to change your flow. Like, if you want to
 
 
 
-On, above methods, there is an additional method callback, if you want to handle something when the when asking permission flow is completed and some permissions are still missing. With permissions still not being granted, the original method can not be called. So you want to show users a message or do something to tell them that this functionality will not work or like that, you can do so with `@OnPermissionsDenied` annotation.
+On, above methods, there is an additional method callback, if you want to handle something when asking permission flow is complete and some permissions are still missing. With permissions still not being granted, the original method can not be called. So you want to show users a message or do something to tell them that this functionality will not work or like that, you can do so with `@OnPermissionsDenied` annotation.
 
 For example,
 
@@ -256,7 +256,7 @@ Summary of the annotations you can use
 | `@WithPermissions`                |                           | Annotate a method with this annotations and pass the `permissions` array. It will handle all the things by itself. Return type should be `void`<br />Arguments you can pass:<br />* `permissions` - list of permissions as array<br />* `rationaleMessage` - A custom message to be shown, when rationale dialog is shown<br />* `permanentlyDeniedMessage` - A custom message to be shown, when permanently denied dialog is shown<br />* `handleRationale` - Default true. Indicates weather rationale case should be handled or not<br />* `handlePermanentlyDenied` - Default true. Indicates weather permanently denied permission(s) case should be handled or not |
 | `@OnShowRationale`                | `QuickPermissionsRequest` | Annotate a method with this annotation when you want to handle rationale case. The (public) method should have one argument of type `QuickPermissionsRequest`. If `handleRationale` was set to false, this method will not be called. |
 | `@OnPermissionsPermanentlyDenied` | `QuickPermissionsRequest` | Annotate a method with this annotation when you want to handle permanently permissions denied case. The (public) method should have one argument of type `QuickPermissionsRequest`. If `handlePermanentlyDenied`was set to false, this method will not be called. |
-| `@OnPermissionsDenied`            | `QuickPermissionsRequest` | (Public) Method with this annotation will be called when, no permissions are not granted when the flow is complete. The method should have one argument of type `QuickPermissionsRequest`. |
+| `@OnPermissionsDenied`            | `QuickPermissionsRequest` | (Public) Method with this annotation will be called when permissions are not granted after the flow is complete. The method should have one argument of type `QuickPermissionsRequest`. |
 
 
 
