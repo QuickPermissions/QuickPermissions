@@ -26,7 +26,7 @@ class QuickPermissionsPlugin : Plugin<Project> {
 
                 // add necessary dependencies
                 project.dependencies.add("implementation", "org.aspectj:aspectjrt:1.8.13")
-                project.dependencies.add("api", "com.github.quickpermissions:quickpermissions-annotations:0.3.1")
+                project.dependencies.add("api", "com.github.quickpermissions:quickpermissions-annotations:0.3.2")
 
             } else {
                 // throw exception it doesn't work on any other module
