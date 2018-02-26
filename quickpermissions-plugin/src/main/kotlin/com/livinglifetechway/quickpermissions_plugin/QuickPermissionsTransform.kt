@@ -33,7 +33,8 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
 
             it.jarInputs.forEach {
                 log("REF JAR INPUT" + it.file.toString())
-                classpathFiles.add(it.file)
+                if (it.file.name.contains("quickpermissions-annotations"))
+                    classpathFiles.add(it.file)
             }
         }
 
@@ -45,7 +46,8 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
             }
             it.jarInputs.forEach {
                 log("JAR INPUT" + it.file.toString())
-                files.add(it.file)
+                if (it.file.name.contains("quickpermissions-annotations"))
+                    files.add(it.file)
             }
         }
 
