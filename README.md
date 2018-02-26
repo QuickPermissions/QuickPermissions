@@ -11,7 +11,7 @@ The most easiest way to handle Android Runtime Permissions.
   * [You manage the rationale message showing](#you-manage-the-rationale-message-showing)
   * [You manage when permissions are permanently denied](#you-manage-when-permissions-are-permanently-denied)
 * [Summary](#summary)
-
+* [Sample](https://github.com/QuickPermissions/QuickPermissions-Sample)
 
 
 ## Inspiration
@@ -43,7 +43,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	    // ...
         // BELOW LINE THIS SHOULD BE ADDED
-        classpath 'com.github.QuickPermissions:QuickPermissions:0.3.0' 
+        classpath 'com.github.QuickPermissions:QuickPermissions:0.3.2' 
     }
 }
 
