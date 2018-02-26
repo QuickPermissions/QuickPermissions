@@ -27,18 +27,26 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
         //  Referenced Inputs to classpath
         transformInvocation?.referencedInputs?.forEach {
             it.directoryInputs.forEach {
+                log("REF DIR INPUT" + it.file.toString())
                 classpathFiles.add(it.file)
             }
 
             it.jarInputs.forEach {
+                log("REF JAR INPUT" + it.file.toString())
                 classpathFiles.add(it.file)
             }
         }
 
         // Scope inputs
         transformInvocation?.inputs?.forEach {
-            it.directoryInputs.forEach { files.add(it.file) }
-            it.jarInputs.forEach { files.add(it.file) }
+            it.directoryInputs.forEach {
+                log("DIR INPUT: " + it.file.toString())
+                files.add(it.file)
+            }
+            it.jarInputs.forEach {
+                log("JAR INPUT" + it.file.toString())
+                files.add(it.file)
+            }
         }
 
         // Evaluate class paths
@@ -101,5 +109,9 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
     }
 
     override fun isIncremental(): Boolean = false
+
+    fun log(str: String) {
+        println("-------------- QP-PLUGIN: $str --------------")
+    }
 
 }
