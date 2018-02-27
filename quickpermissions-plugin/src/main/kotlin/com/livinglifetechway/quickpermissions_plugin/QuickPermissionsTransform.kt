@@ -13,7 +13,6 @@ import java.io.File
 
 class QuickPermissionsTransform(private val project: Project) : Transform() {
 
-
     override fun transform(transformInvocation: TransformInvocation?) {
 
         val files = arrayListOf<File>()
@@ -22,7 +21,9 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
 
         val outputProvider: TransformOutputProvider? = transformInvocation?.outputProvider
         // clean
-        outputProvider?.deleteAll()
+//        outputProvider?.deleteAll()
+
+        log("Output Provider: ")
 
         //  Referenced Inputs to classpath
         transformInvocation?.referencedInputs?.forEach {
@@ -107,12 +108,11 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
     override fun getReferencedScopes(): MutableSet<in QualifiedContent.Scope>? {
         return Sets.immutableEnumSet(
                 QualifiedContent.Scope.SUB_PROJECTS,
-                QualifiedContent.Scope.EXTERNAL_LIBRARIES,
-                QualifiedContent.Scope.PROVIDED_ONLY
+                QualifiedContent.Scope.EXTERNAL_LIBRARIES
         )
     }
 
-    override fun isIncremental(): Boolean = false
+    override fun isIncremental(): Boolean = true
 
     fun log(str: String) {
         println("-------------- QP-PLUGIN: $str --------------")
