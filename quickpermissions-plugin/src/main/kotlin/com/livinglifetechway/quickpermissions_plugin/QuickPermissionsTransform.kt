@@ -47,10 +47,10 @@ class QuickPermissionsTransform(private val project: Project) : Transform() {
                 files.add(it.file)
             }
             it.jarInputs.forEach {
-                if (it.file.name.contains("quickpermissions-annotations") || it.file.name.contains("aspectjrt")) {
+//                if (it.file.name.contains("quickpermissions-annotations") || it.file.name.contains("aspectjrt")) {
                     log("JAR INPUT" + it.file.toString())
                     files.add(it.file)
-                }
+//                }
             }
         }
 
