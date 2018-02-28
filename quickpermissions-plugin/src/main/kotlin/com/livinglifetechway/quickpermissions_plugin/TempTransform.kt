@@ -30,6 +30,7 @@ class TempTransform(private val project: Project) : Transform() {
             it.directoryInputs.forEach {
                 log("REF DIR INPUT" + it.file.toString())
                 files.add(it.file)
+                classpathFiles.add(it.file)
             }
 
             it.jarInputs.forEach {
@@ -37,6 +38,7 @@ class TempTransform(private val project: Project) : Transform() {
                 if (it.file.absolutePath.contains("quickpermissions-annotations") || it.file.absolutePath.contains("aspectjrt")) {
                     log("REF JAR [ADDED]")
                     files.add(it.file)
+                    classpathFiles.add(it.file)
                 }
             }
         }
