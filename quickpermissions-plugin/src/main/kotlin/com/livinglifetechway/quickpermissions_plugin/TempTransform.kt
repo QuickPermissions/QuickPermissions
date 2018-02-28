@@ -22,7 +22,7 @@ class TempTransform(private val project: Project) : Transform() {
 
         val outputProvider: TransformOutputProvider? = transformInvocation?.outputProvider
         // clean
-//        outputProvider?.deleteAll()
+        outputProvider?.deleteAll()
 
         log("Output Provider: ")
 
@@ -133,7 +133,7 @@ class TempTransform(private val project: Project) : Transform() {
         )
     }
 
-    override fun isIncremental(): Boolean = true
+    override fun isIncremental(): Boolean = false
 
     fun log(str: String) {
         println("-------------- QP-PLUGIN: $str --------------")
