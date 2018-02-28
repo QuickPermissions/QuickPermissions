@@ -7,6 +7,7 @@ import com.google.common.collect.Sets
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
+import org.aspectj.util.FileUtil
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.io.File
@@ -29,7 +30,6 @@ class TempTransform(private val project: Project) : Transform() {
         transformInvocation?.referencedInputs?.forEach {
             it.directoryInputs.forEach {
                 log("REF DIR INPUT" + it.file.toString())
-                files.add(it.file)
                 classpathFiles.add(it.file)
             }
 
@@ -37,8 +37,9 @@ class TempTransform(private val project: Project) : Transform() {
                 log("REF JAR INPUT" + it.file.toString())
                 if (it.file.absolutePath.contains("quickpermissions-annotations") || it.file.absolutePath.contains("aspectjrt")) {
                     log("REF JAR [ADDED]")
-                    files.add(it.file)
                     classpathFiles.add(it.file)
+                } else {
+                    copyJar(outputProvider, it)
                 }
             }
         }
@@ -98,6 +99,23 @@ class TempTransform(private val project: Project) : Transform() {
 
     }
 
+    private fun copyJar(outputProvider: TransformOutputProvider?, jarInput: JarInput?): Boolean {
+        if (jarInput === null) {
+            return false
+        }
+
+        var jarName = jarInput.name
+        if (jarName.endsWith(".jar")) {
+            jarName = jarName.substring(0, jarName.length - 4)
+        }
+
+        val dest: File? = outputProvider?.getContentLocation(jarName, jarInput.contentTypes, jarInput.scopes, Format.JAR)
+
+        FileUtil.copyFile(jarInput.file, dest)
+
+        return true
+    }
+
     override fun getName(): String = "QuickPermissions"
 
     override fun getInputTypes(): Set<QualifiedContent.ContentType> {
@@ -105,7 +123,7 @@ class TempTransform(private val project: Project) : Transform() {
     }
 
     override fun getScopes(): MutableSet<in QualifiedContent.Scope>? {
-        return Sets.immutableEnumSet(QualifiedContent.Scope.PROJECT)
+        return Sets.immutableEnumSet(QualifiedContent.Scope.PROJECT, QualifiedContent.Scope.EXTERNAL_LIBRARIES)
     }
 
     override fun getReferencedScopes(): MutableSet<in QualifiedContent.Scope>? {
