@@ -32,10 +32,10 @@ class TempTransform(private val project: Project) : Transform() {
             }
 
             it.jarInputs.forEach {
-                //                if (it.file.name.contains("quickpermissions-annotations") || it.file.name.contains("aspectjrt")) {
-                log("REF JAR INPUT" + it.file.toString())
-                classpathFiles.add(it.file)
-//                }
+                if (it.file.name.contains("quickpermissions-annotations") || it.file.name.contains("aspectjrt")) {
+                    log("REF JAR INPUT" + it.file.toString())
+                    classpathFiles.add(it.file)
+                }
             }
         }
 
@@ -46,9 +46,9 @@ class TempTransform(private val project: Project) : Transform() {
                 files.add(it.file)
             }
             it.jarInputs.forEach {
-//                if (it.file.name.contains("quickpermissions-annotations") || it.file.name.contains("aspectjrt")) {
-                    log("JAR INPUT" + it.file.toString())
-                    files.add(it.file)
+                //                if (it.file.name.contains("quickpermissions-annotations") || it.file.name.contains("aspectjrt")) {
+                log("JAR INPUT" + it.file.toString())
+                files.add(it.file)
 //                }
             }
         }
@@ -101,7 +101,7 @@ class TempTransform(private val project: Project) : Transform() {
     }
 
     override fun getScopes(): MutableSet<in QualifiedContent.Scope>? {
-        return Sets.immutableEnumSet(QualifiedContent.Scope.PROJECT, QualifiedContent.Scope.EXTERNAL_LIBRARIES)
+        return Sets.immutableEnumSet(QualifiedContent.Scope.PROJECT)
     }
 
     override fun getReferencedScopes(): MutableSet<in QualifiedContent.Scope>? {
