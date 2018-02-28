@@ -29,14 +29,14 @@ class TempTransform(private val project: Project) : Transform() {
         transformInvocation?.referencedInputs?.forEach {
             it.directoryInputs.forEach {
                 log("REF DIR INPUT" + it.file.toString())
-                classpathFiles.add(it.file)
+                files.add(it.file)
             }
 
             it.jarInputs.forEach {
                 log("REF JAR INPUT" + it.file.toString())
                 if (it.file.absolutePath.contains("quickpermissions-annotations") || it.file.absolutePath.contains("aspectjrt")) {
                     log("REF JAR [ADDED]")
-                    classpathFiles.add(it.file)
+                    files.add(it.file)
                 }
             }
         }
