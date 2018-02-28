@@ -6,6 +6,7 @@ import com.google.common.base.Strings
 import com.google.common.collect.Sets
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.io.File
@@ -78,7 +79,7 @@ class TempTransform(private val project: Project) : Transform() {
 
         // run aspectj
         val handler = MessageHandler(true)
-//        Main().run(args.toTypedArray(), handler)
+        Main().run(args.toTypedArray(), handler)
 
         handler.getMessages(null, true).forEach { message ->
             when {
