@@ -76,6 +76,8 @@ Now, read below for using directions.
 
 > **Supports both `Java` and `Kotlin`**
 
+> You might need to disable Instant Run to make it work
+
 
 
 ## How to do it?
