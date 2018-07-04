@@ -3,7 +3,7 @@
 The most easiest way to handle Android Runtime Permissions.
 
 
-> NOTE: If you are working in Kotlin, you should check out the brand new ![QuickPermissions-Kotlin](https://github.com/QuickPermissions/QuickPermissions-Kotlin) library - faster compile times, no gradle plugin required and works with instant-run. 
+> NOTE: If you are working in Kotlin, you should check out the brand new [QuickPermissions-Kotlin](https://github.com/QuickPermissions/QuickPermissions-Kotlin) library - faster compile times, no gradle plugin required and works with instant-run. 
 
 
 * [Inspiration](#inspiration)
